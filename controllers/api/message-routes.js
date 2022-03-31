@@ -35,7 +35,8 @@ router.get('/:id', (req, res) => {
 router.post('/', ({ body }, res) => {
     Message.create({
         text: body.text,
-        user_id: body.user_id
+        user_id: body.user_id,
+        user_generated: body.user_generated
     })
         .then(dbMsgData => res.status(200).json(dbMsgData))
         .catch(err => {
