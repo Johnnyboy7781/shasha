@@ -15,6 +15,10 @@ Message.init(
             type: DataTypes.STRING,
             allowNull: false
         },
+        user_generated: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
+        },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
