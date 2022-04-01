@@ -38,12 +38,20 @@ router.get('/:id', (req, res) => {
         })
 });
 
-router.post('/', ({ body }, res) => {
+router.post('/', (req, res) => {
     User.create({
-        username: body.username,
-        password: body.password
+        username: req.body.username,
+        password: req.body.password
     })
-        .then(dbUserData => res.status(200).json(dbUserData))
+        .then(dbUserData => {
+            req.session.save(() => {
+                req.session.user_id = dbUserData.id;
+                req.session.username = dbUserData.username;
+                req.session.loggedIn = true;
+    
+                res.json(dbUserData);
+            })
+        })
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
@@ -68,8 +76,13 @@ router.post('/login', (req, res) => {
                 return;
             }
 
-            // TODO: Add sessions/cookies 
-            res.status(200).json({ message: 'You are now logged in!' });
+            req.session.save(() => {
+                req.session.user_id = dbUserData.id;
+                req.session.username = dbUserData.username;
+                req.session.loggedIn = true;
+    
+                res.json({ message: "You are now logged in!" });
+            })
         })
         .catch(err => {
             console.log(err);
@@ -78,8 +91,13 @@ router.post('/login', (req, res) => {
 })
 
 router.post('/logout', (req, res) => {
-    res.status(200).json({ message: 'You are now logged out!' });
-    // TODO: Added sessions/cookies
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    } else {
+        res.status(404).end();
+    }
 })
 
 router.put('/:id', (req, res) => {
