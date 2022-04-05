@@ -1,9 +1,5 @@
 # S.H.A.S.H.A
 
-# S.H.A.S.H.A
-
-# mysql.Employeetracker
-
 ![GitHub license](https://img.shields.io/badge/Made%20by-%40McDonnel_&_Pham-green)
 
 App for people that may need to talk to someone but not able to afford expensive therapist. 
