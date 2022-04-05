@@ -795,7 +795,7 @@ async function trainnlp(manager) {
     'user.needsadvice',
     "I'm not sure I'll have the best answer, but I'll try"
   );
-  manager.save('./model.nlp', true);
+  manager.save('../controllers/model.nlp', true);
 };
 
 trainnlp(manager);
