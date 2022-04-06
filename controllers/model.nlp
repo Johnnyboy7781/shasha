@@ -25339,6 +25339,17 @@
             "answer": "Take a deep breath"
           }
         ],
+        "user.workstress": [
+          {
+            "answer": "I'm hear to listen. Working in a toxic environment can be extremely exhausting."
+          },
+          {
+            "answer": "You are doing a great job! I'm sure your coworkers admire many of your qualities."
+          },
+          {
+            "answer": "Maybe it is time to move on. What made you choose to stay?"
+          }
+        ],
         "agent.acquaintance": [
           {
             "answer": "I'm a virtual agent"

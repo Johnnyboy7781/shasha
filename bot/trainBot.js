@@ -109,6 +109,9 @@ async function trainnlp(manager) {
   manager.addAnswer('en', 'user.heartbreak', "You'll find the right person some day. You are enough and very deserving of love!");
   manager.addAnswer('en', 'user.angry', "I'm sorry. A quick walk may make you feel better");
   manager.addAnswer('en', 'user.angry', 'Take a deep breath');
+  manager.addAnswer('en', 'user.workstress', "I'm hear to listen. Working in a toxic environment can be extremely exhausting.");
+  manager.addAnswer('en', 'user.workstress', "You are doing a great job! I'm sure your coworkers admire many of your qualities.");
+  manager.addAnswer('en', 'user.workstress', "Maybe it is time to move on. What made you choose to stay?");
   // End therapy-related training data
 
   manager.addDocument('en', 'say about you', 'agent.acquaintance');
