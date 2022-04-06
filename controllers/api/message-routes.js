@@ -1,5 +1,9 @@
 const { Message } = require('../../models');
 const router = require('express').Router();
+const { NlpManager } = require('node-nlp');
+
+const threshold = 0.5
+const manager = new NlpManager({ languages: ['en'] });
 
 router.get('/', (req, res) => {
     Message.findAll({
@@ -32,13 +36,29 @@ router.get('/:id', (req, res) => {
         })
 });
 
-router.post('/', ({ body }, res) => {
+router.post('/', async ({ body }, res) => {
+    manager.load('../model.nlp');
+
+    const result = await manager.process('en', body.text);
+    const answer = result.score > threshold && result.answer ? result.answer : "Sorry, I don't understand";
+    
     Message.create({
         text: body.text,
         user_id: body.user_id,
-        user_generated: body.user_generated
+        user_generated: true
     })
-        .then(dbMsgData => res.status(200).json(dbMsgData))
+        .then(dbMsgData => {
+            Message.create({
+                text: answer,
+                user_id: body.user_id,
+                user_generated: false
+            })
+                .then(dbBotData => res.status(200).json({ bot: answer }))
+                .catch(err => {
+                    console.log(err);
+                    res.status(500).json(err);
+                })
+        })
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
