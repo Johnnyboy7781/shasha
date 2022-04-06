@@ -21,7 +21,6 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-const fs = require('fs');
 const { NlpManager } = require('node-nlp');
 const manager = new NlpManager({ languages: ['en'] });
 
@@ -30,10 +29,60 @@ const say = text => {
 }
 
 async function trainnlp(manager) {
-//   if (fs.existsSync('./model.nlp')) {
-//     manager.load('./model.nlp');
-//     return;
-//   }
+  // Begin therapy-related training data
+  manager.addDocument('en', 'I need advice', 'user.needsadvice');
+  manager.addDocument('en', 'I need some advice', 'user.needsadvice');
+  manager.addDocument('en', 'can you give me some advice', 'user.needsadvice');
+  manager.addDocument('en', 'what should I do', 'user.needsadvice');
+  manager.addDocument('en', "I don't know what to do", 'user.needsadvice');
+  manager.addDocument('en', 'I need direction', 'user.needsadvice');
+  manager.addDocument('en', 'I am sad', 'user.upset');
+  manager.addDocument('en', "I don't feel good", 'user.upset');
+  manager.addDocument('en', "I suck", 'user.upset');
+  manager.addDocument('en', "I feel bad", "user.upset");
+  manager.addDocument('en', "I'm feeling down", "user.upset");
+  manager.addDocument('en', 'I am upset', 'user.upset');
+  manager.addDocument('en', "I'm feeling blue", 'user.upset');
+  manager.addDocument('en', 'I am gonna cry', 'user.upset');
+  manager.addDocument('en', 'I could cry right now', 'user.upset');
+  manager.addDocument('en', 'This really sucks', 'user.upset');
+  manager.addDocument('en', 'I want to die', 'user.suicide');
+  manager.addDocument('en', 'I want to kill myself', 'user.suicide');
+  manager.addDocument('en', "I don't want to keep living", 'user.suicide');
+  manager.addDocument('en', "I don't deserve to live", 'user.suicide');
+  manager.addDocument('en', "I don't want to live", 'user.suicide');
+  manager.addDocument('en', "I hope I don't wake up tomorrow", 'user.suicide');
+  manager.addDocument('en', "I'm going to kill myself", 'user.suicide');
+  manager.addDocument('en', "I'm going to shoot myself", 'user.suicide');
+  manager.addDocument('en', "I'm going to jump off a building", 'user.suicide');
+  manager.addDocument('en', "I'm really gonna do it", 'user.suicide');
+  manager.addDocument('en', "I don't think anyone likes me", 'user.lonely');
+  manager.addDocument('en', "No one would miss me if I was gone", 'user.lonely');
+  manager.addDocument('en', "I'm so lonely", 'user.lonely');
+  manager.addDocument('en', 'Nobody wants to hang out with me', 'user.lonely');
+  manager.addDocument('en', 'Nobody likes me', 'user.lonely');
+  manager.addDocument('en', "I don't have any friends", 'user.lonely');
+  manager.addDocument('en', "I don't know how to talk to people", 'user.lonely');
+  manager.addDocument('en', "I am boring to hang out with", 'user.lonely');
+  manager.addDocument('en', "I feel like I don't have a personality", 'user.lonely');
+  manager.addDocument('en', 'I feel too broken to be loved', 'user.lonely');
+  
+  manager.addAnswer('en', 'user.needsadvice', 'Try meditating for a few minutes to relieve some stress');
+  manager.addAnswer('en', 'user.needsadvice', 'How about going for a walk?');
+  manager.addAnswer('en', 'user.needsadvice', 'Take deep breaths and relax for a few minutes');
+  manager.addAnswer('en', 'user.needsadvice', "I'm not sure I'll have the best answer, but I'll try");
+  manager.addAnswer('en', 'user.upset', "I'm sorry you are feeling bad, tell me how I can help! :)");
+  manager.addAnswer('en', 'user.upset', 'Is there any way I can make you feel better? :)');
+  manager.addAnswer('en', 'user.upset', "How can I cheer you up? :)");
+  manager.addAnswer('en', 'user.upset', "Let me help you find a silver lining! :)");
+  manager.addAnswer('en', 'user.suicide', 
+    "Suicide is never the answer! There are people that love you and want you to be happy. Help is available and you can speak with a consultant right now! Please call the national suicide prevention lifeline at 800-273-8255");
+  manager.addAnswer('en', 'user.lonely', 'I care about you and I know that there are any others that do as well.');
+  manager.addAnswer('en', 'user.lonely', 'You are worthy of love');
+  manager.addAnswer('en', 'user.lonely', 'You are enough!');
+  manager.addAnswer('en', 'user.lonely', 'Anyone would be lucky to have you as a friend!');
+  // End therapy-related training data
+
   manager.addDocument('en', 'say about you', 'agent.acquaintance');
   manager.addDocument('en', 'why are you here', 'agent.acquaintance');
   manager.addDocument('en', 'what is your personality', 'agent.acquaintance');
@@ -386,11 +435,6 @@ async function trainnlp(manager) {
   manager.addDocument('en', "I'm in love with you", 'user.lovesagent');
   manager.addDocument('en', 'I love you so much', 'user.lovesagent');
   manager.addDocument('en', 'I think I love you', 'user.lovesagent');
-  manager.addDocument('en', 'I need advice', 'user.needsadvice');
-  manager.addDocument('en', 'I need some advice', 'user.needsadvice');
-  manager.addDocument('en', 'can you give me some advice', 'user.needsadvice');
-  manager.addDocument('en', 'what should I do', 'user.needsadvice');
-  manager.addDocument('en', 'I am sad', 'user.upset');
   say('Training, please wait..');
   const hrstart = process.hrtime();
   await manager.train();
@@ -398,7 +442,6 @@ async function trainnlp(manager) {
   console.info('Trained (hr): %ds %dms', hrend[0], hrend[1] / 1000000);
   say('Trained!');
 
-  manager.addAnswer('en', 'user.upset', 'Try meditating!')
   manager.addAnswer('en', 'agent.acquaintance', "I'm a virtual agent");
   manager.addAnswer(
     'en',
@@ -785,17 +828,7 @@ async function trainnlp(manager) {
     'user.lovesagent',
     "It's not easy… I'm not a real person, I'm a chatbot"
   );
-  manager.addAnswer(
-    'en',
-    'user.needsadvice',
-    "I probably won't be able to give you the correct answer right away"
-  );
-  manager.addAnswer(
-    'en',
-    'user.needsadvice',
-    "I'm not sure I'll have the best answer, but I'll try"
-  );
-  manager.save('../controllers/model.nlp', true);
+  manager.save('../controllers/model.nlp');
 };
 
 trainnlp(manager);
