@@ -33,7 +33,7 @@ function say(message) {
           result.sentiment.score
         })`;
       }
-      say(`bot> ${answer}${sentiment}`);
+      say(`bot> ${answer}`);
     }
   });
 })();

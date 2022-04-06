@@ -66,6 +66,28 @@ async function trainnlp(manager) {
   manager.addDocument('en', "I am boring to hang out with", 'user.lonely');
   manager.addDocument('en', "I feel like I don't have a personality", 'user.lonely');
   manager.addDocument('en', 'I feel too broken to be loved', 'user.lonely');
+  manager.addDocument('en', "Just got broken up with", 'user.heartbreak');
+  manager.addDocument('en', "I just got dumped", 'user.heartbreak');
+  manager.addDocument('en', "My partner left me", 'user.heartbreak');
+  manager.addDocument('en', "I'm currently going through a breakup", 'user.heartbreak');
+  manager.addDocument('en', "She broke up with me", 'user.heartbreak');
+  manager.addDocument('en', "He broke up with me", 'user.heartbreak');
+  manager.addDocument('en', "They broke up with me", 'user.heartbreak');
+  manager.addDocument('en', "I'm angry", 'user.angry');
+  manager.addDocument('en', "I'm furious", 'user.angry');
+  manager.addDocument('en', "I'm enraged", 'user.angry');
+  manager.addDocument('en', "I'm being mad", 'user.angry');
+  manager.addDocument('en', "I'm mad", 'user.angry');
+  manager.addDocument('en', "I'm angry with you", 'user.angry');
+  manager.addDocument('en', "I'm so fed up", 'user.angry');
+  manager.addDocument('en', "I'm so mad", 'user.angry');
+  manager.addDocument('en', "I'm really angry", 'user.angry');
+  manager.addDocument('en', "I'm feeling angry", 'user.angry');
+  manager.addDocument('en', "Work has been tough", 'user.workstress');
+  manager.addDocument('en', "I hate where I work", 'user.workstress');
+  manager.addDocument('en', "I have work nightmares", 'user.workstress');
+  manager.addDocument('en', "I dread going to work", 'user.workstress');
+  manager.addDocument('en', "Work really brings me down", 'user.workstress');
   
   manager.addAnswer('en', 'user.needsadvice', 'Try meditating for a few minutes to relieve some stress');
   manager.addAnswer('en', 'user.needsadvice', 'How about going for a walk?');
@@ -81,6 +103,12 @@ async function trainnlp(manager) {
   manager.addAnswer('en', 'user.lonely', 'You are worthy of love');
   manager.addAnswer('en', 'user.lonely', 'You are enough!');
   manager.addAnswer('en', 'user.lonely', 'Anyone would be lucky to have you as a friend!');
+  manager.addAnswer('en', 'user.heartbreak', "You're allowed to be upset, and know that you won't always feel this way");
+  manager.addAnswer('en', 'user.heartbreak', "You're most likely better off! Anyone would be lucky to have you!");
+  manager.addAnswer('en', 'user.heartbreak', "Breakups can be hard, and you're allowed to be sad. Take a breath and listen to your emotions.");
+  manager.addAnswer('en', 'user.heartbreak', "You'll find the right person some day. You are enough and very deserving of love!");
+  manager.addAnswer('en', 'user.angry', "I'm sorry. A quick walk may make you feel better");
+  manager.addAnswer('en', 'user.angry', 'Take a deep breath');
   // End therapy-related training data
 
   manager.addDocument('en', 'say about you', 'agent.acquaintance');
@@ -390,12 +418,6 @@ async function trainnlp(manager) {
     "it's been nice talking to you",
     'greetings.nicetotalktoyou'
   );
-  manager.addDocument('en', "I'm angry", 'user.angry');
-  manager.addDocument('en', "I'm furious", 'user.angry');
-  manager.addDocument('en', "I'm enraged", 'user.angry');
-  manager.addDocument('en', "I'm being mad", 'user.angry');
-  manager.addDocument('en', "I'm mad", 'user.angry');
-  manager.addDocument('en', "I'm angry with you", 'user.angry');
   manager.addDocument('en', "I'm back", 'user.back');
   manager.addDocument('en', 'I got back', 'user.back');
   manager.addDocument('en', "I'm here", 'user.back');
@@ -766,12 +788,6 @@ async function trainnlp(manager) {
     'greetings.nicetotalktoyou',
     'I enjoy talking to you, too'
   );
-  manager.addAnswer(
-    'en',
-    'user.angry',
-    "I'm sorry. A quick walk may make you feel better"
-  );
-  manager.addAnswer('en', 'user.angry', 'Take a deep breath');
   manager.addAnswer('en', 'user.back', 'Welcome back. What can I do for you?');
   manager.addAnswer(
     'en',
@@ -828,7 +844,7 @@ async function trainnlp(manager) {
     'user.lovesagent',
     "It's not easy… I'm not a real person, I'm a chatbot"
   );
-  manager.save('../controllers/model.nlp');
+  manager.save('./controllers/model.nlp');
 };
 
 trainnlp(manager);
