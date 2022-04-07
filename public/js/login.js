@@ -1,29 +1,25 @@
 async function loginFormHandler(event) {
    event.preventDefault();
    
-   const email = document.querySelector('#email-login').value.trim();
+   const username = document.querySelector('#username-login').value.trim();
    const password = document.querySelector('#password-login').value.trim();
 
-   if (email && password) {
+   if (username && password) {
       const response = await fetch('/api/users/login', {
          method: 'post',
          body: JSON.stringify({
-         email,
-         password
+            username,
+            password
          }),
          headers: { 'Content-Type': 'application/json' }
       });
       if (response.ok) {
-         document.location.reload(true);
          document.location.replace('/');
-         document.location.replace('/dashboard');
-         document.location.replace('/');
-          
       } else {
          alert('Not Yet Registered or Failed to Log In. Please try again.');
       }
    }
 }
  
-document.getElementById('login-form').addEventListener('submit', loginFormHandler);
+document.querySelector('.user-form').addEventListener('submit', loginFormHandler);
  

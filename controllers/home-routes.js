@@ -4,8 +4,39 @@ const router = require("express").Router();
 
 // Landing page
 router.get("/", (req, res) => {
-  console.log("Testing");
-  res.render("home", { message: "Hi there!" });
+  if (!req.session.loggedIn) {
+    res.render("login");
+  } else {
+    Message.findAll({
+      where: {
+        user_id: req.session.user_id
+      }
+    })
+      .then(dbMsgData => {
+        console.log("===========");
+        let msgs = [];
+        msgs = dbMsgData.map(msg => {
+          return msg.get({ plain: true });
+        });
+        console.log(msgs);
+        res.render("chat", {
+          msgs,
+          chat: true
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({ error: err });
+      })
+  }
 });
+
+router.get('/signup', (req, res) => {
+  res.render("signup");
+})
+
+router.get('/login', (req, res) => {
+  res.render("login");
+})
 
 module.exports = router;

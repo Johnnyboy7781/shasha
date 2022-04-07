@@ -36,21 +36,21 @@ router.get('/:id', (req, res) => {
         })
 });
 
-router.post('/', async ({ body }, res) => {
+router.post('/', async (req, res) => {
     manager.load('../model.nlp');
 
-    const result = await manager.process('en', body.text);
+    const result = await manager.process('en', req.body.text);
     const answer = result.score > threshold && result.answer ? result.answer : "Sorry, I don't understand";
     
     Message.create({
-        text: body.text,
-        user_id: body.user_id,
+        text: req.body.text,
+        user_id: req.session.user_id,
         user_generated: true
     })
         .then(dbMsgData => {
             Message.create({
                 text: answer,
-                user_id: body.user_id,
+                user_id: req.session.user_id,
                 user_generated: false
             })
                 .then(dbBotData => res.status(200).json({ bot: answer }))
