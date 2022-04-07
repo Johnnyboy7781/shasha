@@ -38,7 +38,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const filePath = path.join(__dirname, './model.nlp');
+    const filePath = path.join(__dirname, '/model.nlp');
     manager.load(filePath);
 
     const result = await manager.process('en', req.body.text);
