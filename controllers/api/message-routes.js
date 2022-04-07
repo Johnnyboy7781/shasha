@@ -1,7 +1,7 @@
 const { Message } = require('../../models');
 const router = require('express').Router();
 const { NlpManager } = require('node-nlp');
-const { path } = require('express/lib/application');
+const { path } = require('path');
 
 const threshold = 0.5
 const manager = new NlpManager({ languages: ['en'] });
