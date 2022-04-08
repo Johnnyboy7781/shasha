@@ -1,7 +1,7 @@
 const { Message } = require('../../models');
 const router = require('express').Router();
 const { NlpManager } = require('node-nlp');
-const { path } = require('path');
+const path = require('path');
 
 const threshold = 0.5
 const manager = new NlpManager({ languages: ['en'] });
@@ -38,8 +38,8 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const filePath = path.join(__dirname, '/model.nlp');
-    manager.load(filePath);
+    const modelPath = path.join(__dirname, "../model.nlp");
+    manager.load(modelPath);
 
     const result = await manager.process('en', req.body.text);
     const answer = result.score > threshold && result.answer ? result.answer : "Sorry, I don't understand";
