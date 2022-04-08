@@ -38,10 +38,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const modelPath = path.join(__dirname, "../model.nlp");
-    console.log(modelPath);
-    return;
-    manager.load(modelPath);
+    manager.load(path.join(__dirname, "../model.nlp"));
 
     const result = await manager.process('en', req.body.text);
     const answer = result.score > threshold && result.answer ? result.answer : "Sorry, I don't understand";
