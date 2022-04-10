@@ -1,3 +1,5 @@
+let div = document.querySelector(".chat-input-textarea");
+
 const sendMsg = async e => {
     e.preventDefault();
 
@@ -20,5 +22,15 @@ const sendMsg = async e => {
         }
     }
 }
+
+div.addEventListener("keydown", e => {
+    if (e.keyCode === 13) {
+        sendMsg(e);
+    }
+})
+
+setTimeout(function() {
+    div.focus();
+}, 0);
 
 document.querySelector(".send-msg-form").addEventListener("submit", sendMsg);
