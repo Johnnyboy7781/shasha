@@ -109,8 +109,12 @@ header a:hover {
 /* Chat styles */
 .chat {
     max-width: 1200px;
-    overflow-y: hidden;
     margin: 25px auto;
+}
+
+.chat-messages {
+    height: 78vh;
+    overflow-y: scroll;
 }
 
 .chat-messages > * {
