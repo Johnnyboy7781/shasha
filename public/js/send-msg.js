@@ -1,8 +1,6 @@
 const sendMsg = async e => {
     e.preventDefault();
 
-    console.log("Attempt to send msg");
-
     const msg = document.querySelector(".chat-input-textarea").innerHTML.trim();
 
     if (msg) {

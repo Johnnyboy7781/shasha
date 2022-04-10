@@ -13,12 +13,10 @@ router.get("/", (req, res) => {
       }
     })
       .then(dbMsgData => {
-        console.log("===========");
         let msgs = [];
         msgs = dbMsgData.map(msg => {
           return msg.get({ plain: true });
         });
-        console.log(msgs);
         res.render("chat", {
           msgs,
           chat: true
