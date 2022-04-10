@@ -1,66 +1,38 @@
-# S.H.A.S.H.A
+# Shasha 🤖
 
-![GitHub license](https://img.shields.io/badge/Made%20by-%40McDonnel_&_Pham-green)
+![GitHub license](https://img.shields.io/badge/Made%20by-%40McDonnel_&_Pham-blue)
+![Heroku](https://pyheroku-badge.herokuapp.com/?app=shielded-bayou-08776)
+![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
 
-App for people that may need to talk to someone but not able to afford expensive therapist. 
+## Purpose
+A chat bot made to help people when they are down! Let our bot, Shasha, help you relieve some stress today!
 
-# Technologies Used
+![Screenshot](./screenshot.PNG)
 
-1. 
-2. 
-3. 
-4. 
+## Deployment
+Talk to Shasha at this Heroku deployment: https://shielded-bayou-08776.herokuapp.com/
 
-# Table of Contents
+# Built with
 
-- [Installation](#installation)
-- [Instructions](#instructions)
-- [Features](#features)
-- [Mock-Up](#mock-up)
-- [Repository](#repository)
-- [Demo](#demo)
-- [Application](#application)
-- [Licence](#licence)
-
-## Installation
-
-- 
-
-  > npm install
-
-- 
-
-  > npm install 
-
-- 
-
-  > npm install 
-
-## Instructions
-
-> 
-
-## Features
-
-- 
-
-## Mock-Up
-
-<img src="/images" width="500" />
-<img src="/images" width="500" />
-
-## Demo
-
-- [Video]()
-
-## Repository 
-
-- [Project Repo](https://github.com/)
-
-## Launched App
-
-- [Appplication]()
+- Javascript
+- Nodejs
+- Express
+- MySQL
+- Sequelize
+- Heroku
+- Node-NLP
+- Bcrypt
+- dotenv
+- Handlebars
+- Express-session
+- Express-handlebars
+- Connect-session-sequelize
+- CSS
 
 ## Licence
 
 ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
+
+
+## Contribution
+Made with ❤️ by Jonathan McDonnell & Vulong Pham
